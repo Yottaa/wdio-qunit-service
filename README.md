@@ -1,32 +1,29 @@
-# wdio-qunit-service
+# @pmoeller91-yottaa/wdio-qunit-service
 
 [![npm](https://img.shields.io/npm/v/@pmoeller91-yottaa/wdio-qunit-service)](https://www.npmjs.com/package/@pmoeller91-yottaa/wdio-qunit-service)
 [![test](https://github.com/pmoeller91-yottaa/wdio-qunit-service/actions/workflows/test.yml/badge.svg)](https://github.com/pmoeller91-yottaa/wdio-qunit-service/actions/workflows/test.yml)
+
 [WebdriverIO](https://webdriver.io/) (wdio) service for running
 [QUnit](https://qunitjs.com/) browser-based tests and dynamically converting
-them to `wdio` test suites. ## Replacing Karma `QUnit Service` is a drop-in
-replacement for those using [Karma
-JS](https://karma-runner.github.io/latest/index.html) to run their `QUnit` tests
-([karma-qunit](https://github.com/karma-runner/karma-qunit/),
-[karma-ui5](https://github.com/SAP/karma-ui5) or any other combination of Karma
-and QUnit). Karma is [deprecated](https://github.com/karma-runner/karma) and
-people should move to modern alternatives! If you want to keep your QUnit tests
-as they are, with no rewriting and no refactoring, `QUnit Service` is everything
-you need. It runs your QUnit HTML files in a browser and captures all the
-results in `wdio` format. Because of that, developers can use `QUnit Service` in
-tandem with everything else available in the `wdio` ecosystem. Want to record
-the test run in a [video](https://webdriver.io/docs/wdio-video-reporter/)?
-Perhaps take a
-[screenshot](https://webdriver.io/docs/api/browser/saveScreenshot/) or save it
-in [PDF](https://webdriver.io/docs/api/browser/savePDF/)? Check the [Code
-coverage](https://webdriver.io/docs/devtools-service/#capture-code-coverage)?
-Save the test results in [JUnit](https://webdriver.io/docs/junit-reporter)
-format? Go for it, `QUnit Service` doesn't get on your way. ## Installation
-After configuring `WebdriverIO`, install `wdio-qunit-service` as a devDependency
+them to `wdio` test suites.
+
+## Replacing Karma
+
+`QUnit Service` is a drop-in replacement for those using [Karma JS](https://karma-runner.github.io/latest/index.html) to run their `QUnit` tests ([karma-qunit](https://github.com/karma-runner/karma-qunit/), [karma-ui5](https://github.com/SAP/karma-ui5) or any other combination of Karma and QUnit). Karma is [deprecated](https://github.com/karma-runner/karma) and people should move to modern alternatives!
+
+If you want to keep your QUnit tests as they are, with no rewriting and no refactoring, `QUnit Service` is everything you need. It runs your QUnit HTML files in a browser and captures all the results in `wdio` format.
+
+Because of that, developers can use `QUnit Service` in tandem with everything else available in the `wdio` ecosystem.
+
+Want to record the test run in a [video](https://webdriver.io/docs/wdio-video-reporter/)? Perhaps take a [screenshot](https://webdriver.io/docs/api/browser/saveScreenshot/) or save it in [PDF](https://webdriver.io/docs/api/browser/savePDF/)? Check the [Code coverage](https://webdriver.io/docs/devtools-service/#capture-code-coverage)? Save the test results in [JUnit](https://webdriver.io/docs/junit-reporter) format? Go for it, `QUnit Service` doesn't get on your way.
+
+## Installation
+
+After configuring `WebdriverIO`, install `@pmoeller91-yottaa/wdio-qunit-service` as a devDependency
 in your `package.json` file.
 
 ```shell
-npm install wdio-qunit-service --save-dev
+npm install @pmoeller91-yottaa/wdio-qunit-service --save-dev
 ```
 
 If you haven't configured `WebdriverIO` yet, check the official [documentation](https://webdriver.io/docs/gettingstarted) out.
@@ -52,9 +49,18 @@ In order to use `QUnit Service` you just need to add it to the `services` list i
 
 ```js
 // wdio.conf.js
+import qunitService from "@pmoeller91-yottaa/wdio-qunit-service";
+
 export const config = {
   // ...
-  services: ["qunit"],
+  services: [
+    [
+      qunitService,
+      {
+        /* optional configuration options */
+      },
+    ],
+  ],
   // ...
 };
 ```
@@ -69,11 +75,13 @@ Configuration can be passed along with the service config.
 
 ```js
 // wdio.conf.js
+import qunitService from '@pmoeller91-yottaa/wdio-qunit-service';
+
 export const config = {
   // ...
   baseUrl: 'http://localhost:8080',
   services: [
-    ['qunit', {
+    [qunitService, {
       paths: [
         'unit-tests.html',
         'integration-tests.html',
@@ -111,11 +119,13 @@ If you don't want to create spec/test files, you can pass a list of QUnit HTML f
 
 ```js
 // wdio.conf.js
+import qunitService from '@pmoeller91-yottaa/wdio-qunit-service';
+
 export const config = {
   // ...
   baseUrl: 'http://localhost:8080',
   services: [
-    ['qunit', {
+    [qunitService, {
       paths: [
         'unit-tests.html',
         'integration-tests.html',
@@ -156,6 +166,10 @@ Straight forward [example](./examples/openui5-sample-app/) using the well known 
 Mauricio Lauffer
 
 - LinkedIn: [https://www.linkedin.com/in/mauriciolauffer](https://www.linkedin.com/in/mauriciolauffer)
+
+Patrick Moeller
+
+- LinkedIn: [https://www.linkedin.com/in/pmoeller91](https://www.linkedin.com/in/pmoeller91)
 
 ## License
 
