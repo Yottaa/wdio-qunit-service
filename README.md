@@ -1,6 +1,6 @@
-# @pmoeller91-yottaa/wdio-qunit-service
+# @yottaa/wdio-qunit-service
 
-[![npm](https://img.shields.io/npm/v/@pmoeller91-yottaa/wdio-qunit-service)](https://www.npmjs.com/package/@pmoeller91-yottaa/wdio-qunit-service)
+[![NPM Version](https://img.shields.io/npm/v/@yottaa/wdio-qunit-service)](https://www.npmjs.com/package/@yottaa/wdio-qunit-service)
 [![test](https://github.com/pmoeller91-yottaa/wdio-qunit-service/actions/workflows/test.yml/badge.svg)](https://github.com/pmoeller91-yottaa/wdio-qunit-service/actions/workflows/test.yml)
 
 [WebdriverIO](https://webdriver.io/) (wdio) service for running
@@ -19,11 +19,16 @@ Want to record the test run in a [video](https://webdriver.io/docs/wdio-video-re
 
 ## Installation
 
-After configuring `WebdriverIO`, install `@pmoeller91-yottaa/wdio-qunit-service` as a devDependency
-in your `package.json` file.
+After configuring `WebdriverIO`, configure the `@yottaa` package scope to use GitHub's NPM, as this package is published as a GitHub package.
+
+```
+@yottaa:registry=https://npm.pkg.github.com
+```
+
+Next, install `@yottaa/wdio-qunit-service` as a devDependency in your `package.json` file.
 
 ```shell
-npm install @pmoeller91-yottaa/wdio-qunit-service --save-dev
+npm install @yottaa/wdio-qunit-service --save-dev
 ```
 
 If you haven't configured `WebdriverIO` yet, check the official [documentation](https://webdriver.io/docs/gettingstarted) out.
@@ -49,7 +54,7 @@ In order to use `QUnit Service` you just need to add it to the `services` list i
 
 ```js
 // wdio.conf.js
-import qunitService from "@pmoeller91-yottaa/wdio-qunit-service";
+import qunitService from "@yottaa/wdio-qunit-service";
 
 export const config = {
   // ...
@@ -75,7 +80,7 @@ Configuration can be passed along with the service config.
 
 ```js
 // wdio.conf.js
-import qunitService from '@pmoeller91-yottaa/wdio-qunit-service';
+import qunitService from '@yottaa/wdio-qunit-service';
 
 export const config = {
   // ...
@@ -119,7 +124,7 @@ If you don't want to create spec/test files, you can pass a list of QUnit HTML f
 
 ```js
 // wdio.conf.js
-import qunitService from '@pmoeller91-yottaa/wdio-qunit-service';
+import qunitService from '@yottaa/wdio-qunit-service';
 
 export const config = {
   // ...
