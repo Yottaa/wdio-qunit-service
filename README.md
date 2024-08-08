@@ -1,8 +1,11 @@
-# wdio-qunit-service
+# @yottaa/wdio-qunit-service
 
-[![npm](https://img.shields.io/npm/v/wdio-qunit-service)](https://www.npmjs.com/package/wdio-qunit-service) [![test](https://github.com/mauriciolauffer/wdio-qunit-service/actions/workflows/test.yml/badge.svg)](https://github.com/mauriciolauffer/wdio-qunit-service/actions/workflows/test.yml)
+[![NPM Version](https://img.shields.io/npm/v/@yottaa/wdio-qunit-service?registry_uri=https%3A%2F%2Fnpm.pkg.github.com)](https://github.com/Yottaa/wdio-qunit-service/packages)
+[![test](https://github.com/yottaa/wdio-qunit-service/actions/workflows/test.yml/badge.svg)](https://github.com/yottaa/wdio-qunit-service/actions/workflows/test.yml)
 
-[WebdriverIO](https://webdriver.io/) (wdio) service for running [QUnit](https://qunitjs.com/) browser-based tests and dynamically converting them to `wdio` test suites.
+[WebdriverIO](https://webdriver.io/) (wdio) service for running
+[QUnit](https://qunitjs.com/) browser-based tests and dynamically converting
+them to `wdio` test suites.
 
 ## Replacing Karma
 
@@ -16,23 +19,53 @@ Want to record the test run in a [video](https://webdriver.io/docs/wdio-video-re
 
 ## Installation
 
-After configuring `WebdriverIO`, install `wdio-qunit-service` as a devDependency in your `package.json` file.
+After configuring `WebdriverIO`, configure the `@yottaa` package scope to use GitHub's NPM, as this package is published as a GitHub package.
+
+```
+@yottaa:registry=https://npm.pkg.github.com
+```
+
+Next, install `@yottaa/wdio-qunit-service` as a devDependency in your `package.json` file.
 
 ```shell
-npm install wdio-qunit-service --save-dev
+npm install @yottaa/wdio-qunit-service --save-dev
 ```
 
 If you haven't configured `WebdriverIO` yet, check the official [documentation](https://webdriver.io/docs/gettingstarted) out.
+
+## !! Note !!
+
+This is a fork of the original [wdio-qunit-service](https://github.com/mauriciolauffer/wdio-qunit-service) which enables an enhancement for reporting test results. This disables collecting results from a test run if QUnit tests already completed, due to differences in the output format causing errors in reporting. Instead, this enables the service to auto-start tests to prevent tests from completing early. This allows for consistent reporting in all cases.
+
+To allow this to work, you must pre-configure QUnit to disable autostart. This can be done using [Object preconfig](https://qunitjs.com/api/config/#object-preconfig) (QUnit >= 2.1.0) or [Flat preconfig](https://qunitjs.com/api/config/#flat-preconfig) (QUnit >= 2.21.0).
+
+```html
+<!-- Make sure to set this configuration BEFORE loading QUnit! -->
+<script type="text/javascript">
+  // Example using Object preconfig
+  globalThis.QUnit = { config: { autostart: false } };
+</script>
+<script src="http://code.jquery.com/qunit/qunit-2.20.1.js"></script>
+```
 
 ## Configuration
 
 In order to use `QUnit Service` you just need to add it to the `services` list in your `wdio.conf.js` file. The wdio documentation has all information related to the [configuration file](https://webdriver.io/docs/configurationfile):
 
 ```js
-  // wdio.conf.js
+// wdio.conf.js
+import qunitService from "@yottaa/wdio-qunit-service";
+
 export const config = {
   // ...
-  services: ["qunit"],
+  services: [
+    [
+      qunitService,
+      {
+        /* optional configuration options */
+      },
+    ],
+  ],
   // ...
 };
 ```
@@ -40,6 +73,35 @@ export const config = {
 ## Usage
 
 Make sure the web server is up and running before executing the tests. `wdio` will not start the web server.
+
+### Configuration
+
+Configuration can be passed along with the service config.
+
+```js
+// wdio.conf.js
+import qunitService from '@yottaa/wdio-qunit-service';
+
+export const config = {
+  // ...
+  baseUrl: 'http://localhost:8080',
+  services: [
+    [qunitService, {
+      paths: [
+        'unit-tests.html',
+        'integration-tests.html',
+        'test/qunit.html'
+      ],
+      autostartDelay: 100,
+    }],
+  // ...
+};
+```
+
+| Option Name    | Default value | Description                                                                            |
+| -------------- | ------------- | -------------------------------------------------------------------------------------- |
+| paths          | []            | Array of paths used to automatically generate tests, when using as a runner            |
+| autostartDelay | 100           | Delay before the service attempts to start the QUnit runner in-browser, in miliseconds |
 
 ### With .spec or .test files
 
@@ -62,16 +124,18 @@ If you don't want to create spec/test files, you can pass a list of QUnit HTML f
 
 ```js
 // wdio.conf.js
+import qunitService from '@yottaa/wdio-qunit-service';
+
 export const config = {
   // ...
   baseUrl: 'http://localhost:8080',
   services: [
-    ['qunit', {
+    [qunitService, {
       paths: [
         'unit-tests.html',
         'integration-tests.html',
         'test/qunit.html'
-      ]
+      ],
     }],
   // ...
 };
@@ -107,6 +171,10 @@ Straight forward [example](./examples/openui5-sample-app/) using the well known 
 Mauricio Lauffer
 
 - LinkedIn: [https://www.linkedin.com/in/mauriciolauffer](https://www.linkedin.com/in/mauriciolauffer)
+
+Yottaa
+
+- LinkedIn: [https://www.linkedin.com/company/yottaa](https://www.linkedin.com/company/yottaa)
 
 ## License
 

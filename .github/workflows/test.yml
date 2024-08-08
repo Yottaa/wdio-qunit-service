@@ -1,4 +1,4 @@
-name: test
+name: Test
 
 on:
   push:
@@ -9,6 +9,7 @@ permissions: read-all
 
 jobs:
   test:
+    name: Test [Node ${{ matrix.node-version }}]
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -22,14 +23,31 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
-      - run: npm ci --ignore-scripts
-      - run: npm run build
-      - run: npm run test:esm
-      - run: npm run test:features
-      - run: npm run test:qunit
-      - run: npm run test:no:specs
-      - run: npm run test:cjs
-      - run: npm run lint:ci
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+      - name: "Commit Lint"
+        run: npm run
+      - name: Build
+        run: npm run build
+        if: success() || failure()
+      - name: "Test: ESM"
+        run: npm run test:esm
+      - name: "Test: Features"
+        run: npm run test:features
+        if: success() || failure()
+      - name: "Test: QUnit"
+        run: npm run test:qunit
+        if: success() || failure()
+      - name: "Test: No:Specs"
+        run: npm run test:no:specs
+        if: success() || failure()
+      - name: "Test: CJS"
+        run: npm run test:cjs
+        if: success() || failure()
+      - name: "Lint"
+        run: npm run lint:ci
+        if: success() || failure()
       - uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: eslint.sarif
+        if: success() || failure()
