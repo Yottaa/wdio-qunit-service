@@ -6,4 +6,4 @@ As this is a small fork, it is better to first verify if the issue is relevant t
 >
 > If the issue is confirmed as a vulnerability, a Security Advisory will be open and acknowledge your contributions as part of it. This project follows a 90 day disclosure timeline.
 
-If the issue applies _only to this fork_, please create an issue on the repository with details: [https://github.com/pmoeller91-yottaa/wdio-qunit-service]. There are no guarantees for response timelines for this minor fork.
+If the issue applies _only to this fork_, please create an issue on the repository with details: [https://github.com/yottaa/wdio-qunit-service]. There are no guarantees for response timelines for this minor fork.

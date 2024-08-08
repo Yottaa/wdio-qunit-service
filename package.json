@@ -2,9 +2,9 @@
   "name": "@yottaa/wdio-qunit-service",
   "version": "0.2.0",
   "description": "Forked version of WebdriverIO service for running QUnit browser-based tests and dynamically converting them to WDIO test suites.",
-  "author": "Mauricio Lauffer, Patrick Moeller",
+  "author": "Mauricio Lauffer, Yottaa",
   "license": "MIT",
-  "homepage": "https://github.com/pmoeller91-yottaa/wdio-qunit-service#readme",
+  "homepage": "https://github.com/yottaa/wdio-qunit-service#readme",
   "type": "module",
   "main": "./dist/esm/index.js",
   "types": "./dist/esm/index.d.ts",
@@ -41,19 +41,29 @@
     "test:no:specs": "npm run test-no-specs -w vanilla-qunit",
     "test:ui5:local": "npm test -w openui5-sample-app",
     "lint": "eslint  --cache",
-    "lint:ci": "eslint src examples -f @microsoft/eslint-formatter-sarif -o eslint.sarif"
+    "lint:ci": "eslint src examples -f @microsoft/eslint-formatter-sarif -o eslint.sarif",
+    "prepare": "husky",
+    "commit": "git-cz",
+    "commitlint": "commitlint --edit",
+    "commitlint:ci": "commitlint --from $GITHUB_BASE_REF --to $GITHUB_HEAD_REF"
   },
   "dependencies": {
     "cross-dirname": "^0.1.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.4.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@commitlint/cz-commitlint": "^19.4.0",
     "@types/node": "^20.14.2",
     "@types/qunit": "^2.19.10",
     "@wdio/types": "^8.38.2",
+    "commitizen": "^4.3.0",
     "eslint": "^9.5.0",
     "eslint-config-mlauffer-nodejs": "^2.0.3",
     "eslint-plugin-mocha": "^10.4.3",
     "eslint-plugin-wdio": "^8.37.0",
+    "husky": "^9.1.4",
+    "inquirer": "^9.3.6",
     "npm-run-all": "^4.1.5",
     "ts-node": "^10.9.2",
     "typescript-eslint": "^8.0.0-alpha.30",
@@ -67,6 +77,11 @@
     "typescript": ">=5",
     "webdriverio": ">=8"
   },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/yottaa/wdio-qunit-service.git"
@@ -75,6 +90,6 @@
     "registry": "https://npm.pkg.github.com"
   },
   "bugs": {
-    "url": "https://github.com/pmoeller91-yottaa/wdio-qunit-service/issues"
+    "url": "https://github.com/yottaa/wdio-qunit-service/issues"
   }
 }

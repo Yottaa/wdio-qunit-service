@@ -1,7 +1,7 @@
 # @yottaa/wdio-qunit-service
 
-[![NPM Version](https://img.shields.io/npm/v/@yottaa/wdio-qunit-service)](https://www.npmjs.com/package/@yottaa/wdio-qunit-service)
-[![test](https://github.com/pmoeller91-yottaa/wdio-qunit-service/actions/workflows/test.yml/badge.svg)](https://github.com/pmoeller91-yottaa/wdio-qunit-service/actions/workflows/test.yml)
+[![NPM Version](https://img.shields.io/npm/v/@yottaa/wdio-qunit-service?registry_uri=https%3A%2F%2Fnpm.pkg.github.com)](https://github.com/Yottaa/wdio-qunit-service/packages)
+[![test](https://github.com/yottaa/wdio-qunit-service/actions/workflows/test.yml/badge.svg)](https://github.com/yottaa/wdio-qunit-service/actions/workflows/test.yml)
 
 [WebdriverIO](https://webdriver.io/) (wdio) service for running
 [QUnit](https://qunitjs.com/) browser-based tests and dynamically converting
@@ -172,9 +172,9 @@ Mauricio Lauffer
 
 - LinkedIn: [https://www.linkedin.com/in/mauriciolauffer](https://www.linkedin.com/in/mauriciolauffer)
 
-Patrick Moeller
+Yottaa
 
-- LinkedIn: [https://www.linkedin.com/in/pmoeller91](https://www.linkedin.com/in/pmoeller91)
+- LinkedIn: [https://www.linkedin.com/company/yottaa](https://www.linkedin.com/company/yottaa)
 
 ## License
 
