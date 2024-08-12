@@ -1,6 +1,6 @@
 {
   "name": "@yottaa/wdio-qunit-service",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "Forked version of WebdriverIO service for running QUnit browser-based tests and dynamically converting them to WDIO test suites.",
   "author": "Mauricio Lauffer, Yottaa",
   "license": "MIT",
