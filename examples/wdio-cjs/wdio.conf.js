@@ -14,7 +14,7 @@ exports.config = {
   framework: 'mocha',
   reporters: ['spec'],
 
-  services: [['qunit', { autostartDelay: 1000 }]],
+  services: [['qunit', { autostartDelay: 5000 }]],
   mochaOpts: {
     ui: 'bdd',
     timeout: 60000

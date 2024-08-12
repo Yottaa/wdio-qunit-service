@@ -108,7 +108,8 @@ async function QunitFinishedEventInBrowserContext(
     });
     const automaticRunStartPromise = new Promise<void>((resolve) => {
       window.setTimeout(() => {
-        if (!started) {
+        if (!started && !window.QUnit.config.started) {
+          started = true;
           console.debug('QUnit started automatically by service'); // eslint-disable-line no-console
           window.QUnit.start();
           resolve();
