@@ -14,6 +14,7 @@ jobs:
       contents: write
       pull-requests: write
       packages: write
+      id-token: write
     steps:
       - uses: googleapis/release-please-action@v4
         id: release
@@ -41,6 +42,8 @@ jobs:
       - name: Publish
         if: ${{ steps.release.outputs.release_created }}
         run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Suggestion from the release-please-action repo README
       - name: Tag major and minor versions
